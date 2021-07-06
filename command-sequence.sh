@@ -1,24 +1,24 @@
 ##########################################################
-##             		Intall Firewalld                    ##
+##             	  Install Firewalld                   ##
 ##########################################################
 
-# Actualizar Centos
+# Update Centos Repository
 sudo dnf update
 
 
-# Intalar Firewalld
+# Install Firewalld
 dnf install firewalld -y
 
 
-# Abilitamos firewalld para que inicie con el servidor
+# Enable service firewalld 
 systemctl enable firewalld
 
 
-# Iniciar el servicio de firewalld
+# Start service firewalld
 systemctl start firewalld
 
 
-# Verificar el estado del servicio de firewalld
+# Firewalld verify status service
 systemctl status firewalld
 
 
@@ -26,56 +26,56 @@ systemctl status firewalld
 sed -ie 's/AllowZoneDrifting=yes/AllowZoneDrifting=no/g' /etc/firewalld/firewalld.conf 
 
 
-# reiniciar firewalld
+# restart firewalld
 systemctl restart firewalld
 
 
 ##########################################################
-##             Instalation nginx, php-fpm               ##
+##               Installs nginx, php-fpm                ##
 ##########################################################
 
-# Intalar nginx 
+# Install nginx service 
 dnf install nginx
 
 
-# Abilitamos el servicio de nginx para que arranque junto con el servidor
+# Enable nginx service
 systemctl enable nginx
 
 
-# Iniciar servicio nginx 
+# Start nginx service 
 systemctl start nginx
 
 
-# Instalamos el repositorio que tiene las ultimas versiones de php para centos 8 
+# Install repo remi-release-8.rpm 
 dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
 
-# Reseteamos cualquier version de php que este en los repositorios
+# Reset php module in repo
 dnf module reset php
 
 
-# Permitimos que el repositorio carge la version de php que necesitamos
+# Enable php version 7.4 in repo 
 dnf module enable php:remi-7.4
 
 
-# Actualizamos los repositorios
+# Update repo
 dnf update
 
 
-# Intalamos el servicio de php y los modulos que necesitaremos
+# Install php and php-fpm service
 dnf install php php-fpm php-mysqlnd php-common php-curl php-dom php-json php-devel php-mbstring php-memcached php-redis php-pdo php-bcmath php-xml php-gd php-gmp php-igbinary php-imagick php-pdo_mysql php-posix php-simplexml php-opcache php-xsl php-xmlwriter php-xmlreader php-swoole php-zip php-yaml php-uuid
 
 
-# abilitamos el servicio de php-fpm para que arranque junto con el servidor
+# Enable php-fpm service 
 systemctl enable php-fpm
 
 
-# Iniciamos el servicio de php-fpm  
+# Start php-fpm service  
 systemctl start php-fpm
 
 
 ##########################################################
-##       Coniguration nignix, php-fpm & laravel         ##
+##           Config nignix, php-fpm & laravel           ##
 ##########################################################
 
 # Change time zone
@@ -95,21 +95,22 @@ sed -ie 's/;listen.group\ =\ nobody/listen.group\ =\ nginx/g' /etc/php-fpm.d/www
 sed -ie 's/;listen.mode\ =\ 0660/listen.mode\ =\ 0660/g' /etc/php-fpm.d/www.conf
 
 
-# Intalamos composer para getionar los repositorios para laravel  
+# Install composer  
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 chmod +x /usr/local/bin/composer
 
 
-# Create laravel directorio an configure permision  
-mkdir /var/www/html/nginx-laravel.com
+# Create domain directory 
+mkdir -p /var/www/html/nginx-laravel.com
 
 
 # Copy files laravel proyect in /var/www/html/nginx-laravel.com
+# Replace git repository to you git laravel proyect 
 git clone https://github.com/lotous/nginx-laravel.git
 
 
-# Install dependencias
+# Install packages required for you proyect
 composer install
 
 
