@@ -22,9 +22,8 @@ systemctl start firewalld
 systemctl status firewalld
 
 
-# fix firewalld 
- nano /etc/firewalld/firewalld.conf 
- Change => AllowZoneDrifting=yes to AllowZoneDrifting=no
+# fix firewalld AllowZoneDrifting
+sed -ie 's/AllowZoneDrifting=yes/AllowZoneDrifting=no/g' /etc/firewalld/firewalld.conf 
 
 
 # reiniciar firewalld
