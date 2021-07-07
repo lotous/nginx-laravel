@@ -127,7 +127,7 @@ restorecon -Rv '/var/www/html/nginx-laravel.com'
 sed -i '37,58 s/^/#/' /etc/nginx/nginx.conf
 
 
-# Create configuration virtual server for nginx 
+# Create config file server for nginx 
 echo "server {
    listen      80;
    server_name nginx-laravel.com www.nginx-laravel.com;
@@ -155,7 +155,7 @@ echo "server {
 
 
 ##########################################################
-##               Intalacion SSL srever                  ##
+##                 Install SSL srever                   ##
 ##########################################################
 
 # Intalar epel repository
@@ -172,7 +172,7 @@ certbot --nginx -d nginx-laravel.com -d www.nginx-laravel.com
 
 
 ##########################################################
-##              OPEN HTTP'S SERVICE PORT                ##
+##              Open port http & https                  ##
 ##########################################################
 
 # Abilitar el servicio http y https para nginx 
