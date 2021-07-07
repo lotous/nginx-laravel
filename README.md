@@ -1,3 +1,3 @@
-## Note: Replace nginx-laravel for your domain
+## Centos 8, Nginx, php-fpm y larvel 
 
 
