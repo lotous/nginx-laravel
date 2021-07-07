@@ -176,8 +176,8 @@ certbot --nginx -d nginx-laravel.com -d www.nginx-laravel.com
 ##########################################################
 
 # Abilitar el servicio http y https para nginx 
-sudo firewall-cmd --zone=public --permanent --add-service=http
-sudo firewall-cmd --zone=public --permanent --add-service=https
+firewall-cmd --zone=public --permanent --add-service=http
+firewall-cmd --zone=public --permanent --add-service=https
 
 
 # Verificamos que el servicio http este activo 
@@ -186,4 +186,20 @@ firewall-cmd --permanent --list-all
 
 # reinicimos el firewalld para que los cambio sufran efecto
 systemctl restart firewalld
+
+##########################################################
+##       Install NPM for Larvel Mix Dependencies        ##
+##########################################################
+
+# Install npm
+dnf npm install 
+
+# Clear Cache npm 
+npm cache clean -f
+
+# Update npm version
+npm install -g n
+
+# Use stable version
+n stable
 
