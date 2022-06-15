@@ -2,8 +2,7 @@
 
 Secuencia de comandos para la intalacion y configuración de un servidor nginx en sistema operativo Centos 8.
 
-##config-centos-8
-  # Features 
+# Features - config-centos-8.sh 
     - FIREWALLD
     - NGINX
     - PHP-FPM
@@ -13,8 +12,7 @@ Secuencia de comandos para la intalacion y configuración de un servidor nginx e
     - LARAVEL 8.x
     
     
-##config-centos-8
-  # Features 
+# Features - config-centos-7.sh
     - FIREWALLD
     - NGINX
     - PHP-FPM
